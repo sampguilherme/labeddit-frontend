@@ -33,6 +33,8 @@ export const DivInputs = styled.div`
 `
 
 export const LoginInput = styled.input`
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 400;
     border: 1px solid #D5D8DE;
     border-radius: 4px;
     height: 60px;
@@ -50,11 +52,15 @@ export const DivButtons = styled.div`
 export const ButtonContinue = styled.button`
     color: white;
     font-family: 'Noto Sans', sans-serif;
+    font-weight: 700;
     font-size: 18px;
     width: 365px;
     height: 51px;
     background: linear-gradient(90deg, #FF6489 0%, #F9B24E 100%);
     border-radius: 27px;
+    &:hover{
+        opacity: 90%;
+    }
 `
 
 export const Hr = styled.hr`
@@ -64,10 +70,14 @@ export const Hr = styled.hr`
 export const ButtonSignup = styled.button`
     color: #FE7E02;
     font-family: 'Noto sans', sans-serif;
+    font-weight: 700;
     font-size: 18px;
     width: 365px;
     height: 51px;
     background-color: white;
     border: 1px solid #FE7E02;
     border-radius: 27px;
+    &:hover{
+        opacity: 70%;
+    }
 `
