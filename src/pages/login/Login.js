@@ -1,9 +1,22 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
 import { LogoImg, PrincipalDiv, TitleH1, Span, LoginInput, DivInputs, DivButtons, ButtonContinue, Hr, ButtonSignup } from "./LoginStyles"
 import Logo from "../../assets/logo-labeddit.svg"
+import { useNavigate } from "react-router-dom"
+import { goToHomePage, goToSignupPage } from "../../Router/coordinator"
+import { GlobalContext } from "../../contexts/GlobalContext"
 
 export const Login = () => {
     
+    const context = useContext(GlobalContext)
+
+    const {
+        getUsers,
+        users
+    } = context
+
+    const navigate = useNavigate()
+
+
     return (
         <PrincipalDiv>
             <LogoImg src={Logo}/>
@@ -14,9 +27,9 @@ export const Login = () => {
                 <LoginInput placeholder="Senha" type="password"/>
             </DivInputs>
             <DivButtons>
-                <ButtonContinue>Continuar</ButtonContinue>
+                <ButtonContinue onClick={() => goToHomePage(navigate)}>Continuar</ButtonContinue>
                 <Hr/>
-                <ButtonSignup>Crie uma conta!</ButtonSignup>
+                <ButtonSignup onClick={() => goToSignupPage(navigate)}>Crie uma conta!</ButtonSignup>
             </DivButtons>
             
         </PrincipalDiv>
