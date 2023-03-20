@@ -64,6 +64,9 @@ export const P = styled.p`
 `
 
 export const RegisterButton = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
     font-family: 'Noto Sans', sans-serif;
     font-weight: 700;

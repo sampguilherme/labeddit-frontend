@@ -29,6 +29,8 @@ export const Span = styled.span`
 export const DivInputs = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
 `
 
@@ -41,9 +43,20 @@ export const LoginInput = styled.input`
     width: 363px;
     padding: 10px;
 `
+
+export const ErrorP = styled.p`
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 400;
+    color: red;
+    font-size: 14px;
+    margin-top: 25px;
+`
+
 export const DivButtons = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-top: 50px;
     width: 365px;
     gap: 20px;

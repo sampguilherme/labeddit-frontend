@@ -2,37 +2,68 @@ import { useContext, useEffect } from "react"
 import { Header } from "../../components/Header/Header"
 import { GlobalContext } from "../../contexts/GlobalContext"
 import { DivInputs, H1, PrincipalDiv, SignupInput, Span, A, RegisterButton, NotificationDiv, P, ErrorP } from "./SignupStyles"
+import { useState } from "react";
+import axios from "axios"
+import { Spinner } from '@chakra-ui/react'
+import { useNavigate } from "react-router-dom";
+import { goToHomePage } from "../../Router/coordinator";
 
 export const Signup = () => {
 
-
+    const navigate = useNavigate()
 
     const context = useContext(GlobalContext)
 
     const {
         getUsers,
         users,
-        createUser,
-        nickname,
-        setNickname,
+        error,
+        setError,
         email,
         setEmail,
         password,
         setPassword,
-        error
+        inLoading,
+        setInLoading
     } = context
 
     useEffect(() => {
-        getUsers()
+        setError("")
     }, [])
 
-    const emailRegex = /\S+@\S+\.\S+/
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+
+    const [nickname, setNickname] = useState("")
+    
+    const createUser = async () => {
+        const body ={
+            nickname,
+            email,
+            password,
+        }
+        try {
+                setInLoading(true)
+                const response = await axios.post("https://labeddit-backend-ka62.onrender.com/users/signup", body)
+
+                localStorage.setItem('token', response.data.token)
+
+                setNickname("")
+                setEmail("")
+                setPassword("")
+                setError("")
+                setInLoading(false)
+                goToHomePage(navigate)
+        } catch(error) {
+            setInLoading(false)
+            console.log(error)
+            setError(error.response.data)
+        }
+    }
+
+    
 
     return(
-        <body>
-            <Header/>
             <PrincipalDiv>
+                <Header/>
                 <H1>Olá, boas vindas ao LabEddit {';)'}</H1>
                 <DivInputs>
                     <SignupInput placeholder="Apelido" type="text" value={nickname} onChange={(e) => setNickname(e.target.value)}/>
@@ -47,8 +78,12 @@ export const Signup = () => {
                     <input type="checkbox"/>
                     <P>Eu concordo em receber emails sobre coisas legais no Labeddit</P>
                 </NotificationDiv>
-                <RegisterButton onClick={() => createUser()}>Cadastrar</RegisterButton>
+                <div>
+                    {inLoading ? <Spinner marginTop={"24px"}/> : <RegisterButton 
+                        background-color="white"
+                    onClick={() => createUser()}>Cadastrar</RegisterButton>}
+                </div>
+                
             </PrincipalDiv>
-        </body>
     )
 }
