@@ -4,14 +4,20 @@ import { useNavigate } from "react-router-dom"
 import { goToLoginPage } from "../../Router/coordinator"
 
 
-export const Header = () => {
+export const Header = (props) => {
 
     const navigate = useNavigate()
 
     return (
         <PrincipalDiv>
             <img src={Logo} alt="Logo labeddit"/>
-            <A href="#" onClick={() => goToLoginPage(navigate)}>Entrar</A>
+            {
+                props.isOnFeed ? 
+                <A href="#" onClick={() => goToLoginPage(navigate)}>Logout</A> 
+                :
+                <A href="#" onClick={() => goToLoginPage(navigate)}>Entrar</A>
+            }
+            
         </PrincipalDiv>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Home } from '../pages/home/Home'
+import { Feed } from '../pages/feed/Feed'
 import { Login } from '../pages/login/Login'
 import { Signup } from '../pages/signup/Signup'
 
@@ -10,7 +10,7 @@ const Router = () => {
             <Routes>
                 <Route index element={<Login />}/>
                 
-                <Route path="/home" element={<Home />}/>
+                <Route path="/feed" element={<Feed />}/>
 
                 <Route path="signup" element={<Signup />}/>
             </Routes>
