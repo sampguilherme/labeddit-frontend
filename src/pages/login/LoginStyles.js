@@ -76,8 +76,10 @@ export const ButtonContinue = styled.button`
     }
 `
 
-export const Hr = styled.hr`
-    width: 363px;
+export const Line = styled.div`
+    width: 364px;
+    height: 1px;
+    background: linear-gradient(90deg, #FF6489 20%, #F9B24E 100%);
 `
 
 export const ButtonSignup = styled.button`

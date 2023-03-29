@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react"
-import { LogoImg, PrincipalDiv, TitleH1, Span, LoginInput, DivInputs, DivButtons, ButtonContinue, Hr, ButtonSignup, ErrorP } from "./LoginStyles"
+import { LogoImg, PrincipalDiv, TitleH1, Span, LoginInput, DivInputs, DivButtons, ButtonContinue, Line, ButtonSignup, ErrorP } from "./LoginStyles"
 import Logo from "../../assets/logo-labeddit.svg"
 import { useNavigate } from "react-router-dom"
-import { goToHomePage, goToSignupPage } from "../../Router/coordinator"
+import { goToFeedPage, goToSignupPage } from "../../Router/coordinator"
 import { GlobalContext } from "../../contexts/GlobalContext"
 import axios from "axios"
 import { Spinner } from '@chakra-ui/react'
@@ -45,7 +45,7 @@ export const Login = () => {
             setPassword("")
             setError("")
             setInLoading(false)  
-            goToHomePage(navigate)
+            goToFeedPage(navigate)
         } catch (error) {
             setInLoading(false)
             console.log(error)
@@ -78,7 +78,7 @@ export const Login = () => {
                     : 
                     <ButtonContinue onClick={() => login()}>Continuar</ButtonContinue>
                 }
-                <Hr/>
+                <Line></Line>
                 <ButtonSignup onClick={() => goToSignupPage(navigate)}>Crie uma conta!</ButtonSignup>
             </DivButtons>
             

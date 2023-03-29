@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from "axios"
 import { Spinner } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom";
-import { goToHomePage } from "../../Router/coordinator";
+import { goToFeedPage } from "../../Router/coordinator";
 
 export const Signup = () => {
 
@@ -51,7 +51,7 @@ export const Signup = () => {
                 setPassword("")
                 setError("")
                 setInLoading(false)
-                goToHomePage(navigate)
+                goToFeedPage(navigate)
         } catch(error) {
             setInLoading(false)
             console.log(error)
