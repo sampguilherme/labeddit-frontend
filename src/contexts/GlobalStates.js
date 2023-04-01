@@ -21,6 +21,8 @@ export const GlobalState = () => {
         })
     }
 
+    
+
 
     return {
         getUsers,
@@ -32,6 +34,6 @@ export const GlobalState = () => {
         password,
         setPassword,
         inLoading,
-        setInLoading
+        setInLoading,
     }
 }
