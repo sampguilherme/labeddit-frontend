@@ -8,6 +8,7 @@ export const PrincipalDiv = styled.div`
     min-height: 121px;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
+    margin-bottom: 18px;
 `
 
 export const SentUserP = styled.p`
@@ -35,22 +36,48 @@ export const LikeAndCommentsDiv = styled.div`
 export const LikeAndDislikesDiv = styled.div`
     display: flex;
     align-items: center;
+    height: 30px;
+    padding: 4px;
+    gap: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 18px;
+
+`
+
+export const LikeDislkeButton = styled.button`
+    font-size: 22px;
+    color: #6f6f6f;
+    opacity: 70%;
+    &:hover{
+        opacity: 50%;
+    }
+`
+
+export const LikeAndCommentsQuantity = styled.p`
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: #6F6F6F;
+    text-align: center;
+`
+
+export const CommentsDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 80px;
     padding: 4px;
     gap: 12px;
     border: 1px solid #e0e0e0;
     border-radius: 18px;
 `
 
-export const LikeDislkeP = styled.p`
-    font-size: 22px;
+export const CommentButton = styled.button`
+    font-size: 18px;
     color: #6f6f6f;
     opacity: 70%;
-`
-
-export const LikeQuantity = styled.p`
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    color: #6F6F6F;
-    text-align: center;
+    &:hover{
+        opacity: 50%;
+    }
 `

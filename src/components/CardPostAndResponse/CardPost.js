@@ -1,19 +1,26 @@
-import { ContentP, LikeAndCommentsDiv, LikeAndDislikesDiv, LikeDislkeP, LikeQuantity, PrincipalDiv, SentUserP } from "./CardPostStyles"
+import { CommentButton, CommentsDiv, ContentP, LikeAndCommentsDiv, LikeAndDislikesDiv, LikeDislkeButton, LikeAndCommentsQuantity, PrincipalDiv, SentUserP } from "./CardPostStyles"
 import { TbArrowBigUp, TbArrowBigDown } from "react-icons/tb";
+import { TfiComment } from "react-icons/tfi";
 
 
-export const CardPost = () => {
+export const CardPost = ({post}) => {
+
+    const {content, likes, creator, comments, id } = post
+
     return (
         <PrincipalDiv>
-            <SentUserP>Enviado por: guilherme</SentUserP>
-            <ContentP>Eu estou testando o labbedit</ContentP>
+            <SentUserP>Enviado por: {creator.name}</SentUserP>
+            <ContentP>{content}</ContentP>
             <LikeAndCommentsDiv>
                 <LikeAndDislikesDiv>
-                    <LikeDislkeP> <TbArrowBigUp/> </LikeDislkeP>
-                    <LikeQuantity>1.4k</LikeQuantity>
-                    <LikeDislkeP> <TbArrowBigDown/> </LikeDislkeP>
+                    <LikeDislkeButton> <TbArrowBigUp/> </LikeDislkeButton>
+                    <LikeAndCommentsQuantity>{likes}</LikeAndCommentsQuantity>
+                    <LikeDislkeButton> <TbArrowBigDown/> </LikeDislkeButton>
                 </LikeAndDislikesDiv>
-                <p>comments</p>
+                <CommentsDiv>
+                    <CommentButton> <TfiComment/> </CommentButton>
+                    <LikeAndCommentsQuantity>100</LikeAndCommentsQuantity>
+                </CommentsDiv>
             </LikeAndCommentsDiv>
         </PrincipalDiv>
     )
