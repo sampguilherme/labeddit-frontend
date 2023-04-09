@@ -21,16 +21,16 @@ export const Feed = () => {
 
     const getPosts = async () => {
         try {
-            setPostsInLoading(true)
-            const response = await axios.get(`https://labeddit-backend-ka62.onrender.com/posts`,
-                {
-                    headers: {
-                        Authorization: localStorage.getItem('token')
+                setPostsInLoading(true)
+                const response = await axios.get(`https://labeddit-backend-ka62.onrender.com/posts`,
+                    {
+                        headers: {
+                            Authorization: localStorage.getItem('token')
+                        }
                     }
-                }
-            )
-            setPostsInLoading(false)
-            setPosts(response.data)
+                )
+                setPostsInLoading(false)
+                setPosts(response.data)
         } catch (error) {
             setPostsInLoading(false)
             console.log(error)
