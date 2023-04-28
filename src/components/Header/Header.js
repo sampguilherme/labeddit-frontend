@@ -1,7 +1,7 @@
-import { A, LogoHeader, PrincipalDiv } from "./HeaderStyle"
+import { A, ExitButton, LogoHeader, PrincipalDiv } from "./HeaderStyle"
 import Logo from "../../assets/logo-labeddit.svg"
 import { useNavigate } from "react-router-dom"
-import { goToLoginPage } from "../../Router/coordinator"
+import { goToFeedPage, goToLoginPage } from "../../Router/coordinator"
 
 
 export const Header = (props) => {
@@ -10,14 +10,18 @@ export const Header = (props) => {
 
     return (
         <PrincipalDiv>
-            <img src={Logo} alt="Logo labeddit"/>
             {
-                props.isOnFeed ? 
-                <A href="#" onClick={() => goToLoginPage(navigate)}>Logout</A> 
-                :
-                <A href="#" onClick={() => goToLoginPage(navigate)}>Entrar</A>
+                props.isOnCommentPage 
+                ? <ExitButton onClick={() => goToFeedPage(navigate)}>X</ExitButton>
+                : <></>
             }
             
+            <img src={Logo} alt="Logo labeddit"/>
+            {
+                props.isOnSignup 
+                ? <A href="#" onClick={() => goToLoginPage(navigate)}>Entrar</A>
+                : <A href="#" onClick={() => goToLoginPage(navigate)}>Logout</A> 
+            }
         </PrincipalDiv>
     )
 }

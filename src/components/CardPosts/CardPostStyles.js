@@ -36,12 +36,13 @@ export const LikeAndCommentsDiv = styled.div`
 export const LikeAndDislikesDiv = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 30px;
     padding: 4px;
     gap: 12px;
     border: 1px solid #e0e0e0;
     border-radius: 18px;
-
+    width:98px;
 `
 
 export const LikeDislkeButton = styled.button`

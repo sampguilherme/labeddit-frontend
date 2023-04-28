@@ -7,8 +7,11 @@ import axios from "axios"
 import { Spinner } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom";
 import { goToFeedPage } from "../../Router/coordinator";
+import { BASE_URL } from "../../constants/apiUrl";
 
 export const Signup = () => {
+
+    const isOnSignupPage = true
 
     const navigate = useNavigate()
 
@@ -42,7 +45,7 @@ export const Signup = () => {
         }
         try {
                 setInLoading(true)
-                const response = await axios.post("https://labeddit-backend-ka62.onrender.com/users/signup", body)
+                const response = await axios.post(`${BASE_URL}/users/signup`, body)
 
                 localStorage.setItem('token', response.data.token)
 
@@ -63,7 +66,7 @@ export const Signup = () => {
 
     return(
             <PrincipalDiv>
-                <Header/>
+                <Header isOnSignupPage={isOnSignupPage}/>
                 <H1>Olá, boas vindas ao LabEddit {';)'}</H1>
                 <DivInputs>
                     <SignupInput placeholder="Apelido" type="text" value={nickname} onChange={(e) => setNickname(e.target.value)}/>

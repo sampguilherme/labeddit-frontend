@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios"
+import { BASE_URL } from "../constants/apiUrl";
 
 export const GlobalState = () => {
 
@@ -12,7 +13,7 @@ export const GlobalState = () => {
     const [password, setPassword] = useState("")
 
     const getUsers = () => {
-        axios.get("https://labeddit-backend-ka62.onrender.com/users")
+        axios.get(`${BASE_URL}/users`)
         .then((response) => {
             setUsers(response.data)
         })
