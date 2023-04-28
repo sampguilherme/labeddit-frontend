@@ -6,6 +6,7 @@ import { goToFeedPage, goToSignupPage } from "../../Router/coordinator"
 import { GlobalContext } from "../../contexts/GlobalContext"
 import axios from "axios"
 import { Spinner } from '@chakra-ui/react'
+import { BASE_URL } from "../../constants/apiUrl"
 
 export const Login = () => {
     
@@ -37,7 +38,7 @@ export const Login = () => {
         }
         try {
             setInLoading(true)
-            const response = await axios.post("https://labeddit-backend-ka62.onrender.com/users/login", body)
+            const response = await axios.post(`${BASE_URL}/users/login`, body)
 
             localStorage.setItem('token', response.data.token)
 

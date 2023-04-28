@@ -6,9 +6,15 @@ export const PrincipalDiv = styled.div`
     align-items: center;
 `
 
-export const InputPost = styled.input`
+export const PostDiv = styled.div`
     display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 24px;
+`
+
+export const InputComment = styled.input`
+    display: flex;
     width: 364px;
     height: 131px;
     background-color: #ededed;
@@ -21,9 +27,8 @@ export const InputPost = styled.input`
     }
 `
 
-export const PostButton = styled.button`
+export const CommentButton = styled.button`
     margin-top: 14px;
-    margin-bottom: 28px;
     color: white;
     font-family: 'Noto Sans', sans-serif;
     font-weight: 700;
@@ -41,5 +46,6 @@ export const Line = styled.div`
     width: 364px;
     height: 1px;
     background: linear-gradient(90deg, #FF6489 20%, #F9B24E 100%);
+    margin-top: 28px;
     margin-bottom: 28px;
 `

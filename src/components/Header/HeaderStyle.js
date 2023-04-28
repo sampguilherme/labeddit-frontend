@@ -26,3 +26,10 @@ export const A = styled.a`
     }
 `
 
+export const ExitButton = styled.button`
+    font-family: 'Noto Sans', sans-serif;
+    position: absolute;
+    left: 10px;
+    font-weight: 600;
+    font-size: 22px;
+`

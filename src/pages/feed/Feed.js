@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { CardPost } from "../../components/CardPostAndResponse/CardPost"
+import { CardPost } from "../../components/CardPosts/CardPost"
 import { Header } from "../../components/Header/Header"
 import { GlobalContext } from "../../contexts/GlobalContext"
 import { Line, InputPost, PostButton, PrincipalDiv } from "./FeedStyles"
@@ -7,6 +7,7 @@ import { useEffect } from "react"
 import axios from "axios"
 import { useState } from "react"
 import { Spinner } from '@chakra-ui/react'
+import { BASE_URL } from "../../constants/apiUrl"
 
 export const Feed = () => {
 
@@ -22,7 +23,7 @@ export const Feed = () => {
     const getPosts = async () => {
         try {
                 setPostsInLoading(true)
-                const response = await axios.get(`https://labeddit-backend-ka62.onrender.com/posts`,
+                const response = await axios.get(`${BASE_URL}/posts`,
                     {
                         headers: {
                             Authorization: localStorage.getItem('token')
@@ -30,7 +31,7 @@ export const Feed = () => {
                     }
                 )
                 setPostsInLoading(false)
-                setPosts(response.data)
+                setPosts(response.data.reverse())
         } catch (error) {
             setPostsInLoading(false)
             console.log(error)
@@ -43,7 +44,6 @@ export const Feed = () => {
 
     const createPost = async () => {
         const body = {
-            token: localStorage.getItem('token'),
             content: newPost
         }
         try {
@@ -65,7 +65,7 @@ export const Feed = () => {
 
     return(
         <PrincipalDiv>
-            <Header isOnFeed={isOnFeed}/>
+            <Header/>
             <InputPost placeholder="Escreva seu post..." value={newPost} onChange={(e) => setNewPost(e.target.value)}/>
             {createInLoading ? 
                 <Spinner marginTop={"14px"} marginBottom={"28px"}/>
