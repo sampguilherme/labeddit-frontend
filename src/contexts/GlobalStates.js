@@ -12,18 +12,14 @@ export const GlobalState = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const getUsers = () => {
-        axios.get(`${BASE_URL}/users`)
-        .then((response) => {
+    const getUsers = async () => {
+        try {
+            const response = await axios.get(`${BASE_URL}/users`)
             setUsers(response.data)
-        })
-        .catch((error) => {
+        } catch (error){
             console.log(error)
-        })
+        }
     }
-
-    
-
 
     return {
         getUsers,

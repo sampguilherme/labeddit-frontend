@@ -1,1 +1,1 @@
-export const BASE_URL = "https://labeddit-backend-ka62.onrender.com"
+export const BASE_URL = "https://labeddit-backend2.onrender.com"

@@ -82,3 +82,9 @@ export const CommentButton = styled.button`
         opacity: 50%;
     }
 `
+
+export const TopDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
