@@ -41,7 +41,7 @@ export const Login = () => {
             const response = await axios.post(`${BASE_URL}/users/login`, body)
 
             localStorage.setItem('token', response.data.token)
-
+            localStorage.setItem('userId', response.data.userId)
             setEmail("")
             setPassword("")
             setError("")

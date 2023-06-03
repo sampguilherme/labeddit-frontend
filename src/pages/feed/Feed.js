@@ -2,12 +2,13 @@ import { useContext } from "react"
 import { CardPost } from "../../components/CardPosts/CardPost"
 import { Header } from "../../components/Header/Header"
 import { GlobalContext } from "../../contexts/GlobalContext"
-import { Line, InputPost, PostButton, PrincipalDiv } from "./FeedStyles"
+import { Line, PostButton, PrincipalDiv, Textarea } from "./FeedStyles"
 import { useEffect } from "react"
 import axios from "axios"
 import { useState } from "react"
 import { Spinner } from '@chakra-ui/react'
 import { BASE_URL } from "../../constants/apiUrl"
+import { Input } from '@chakra-ui/react'
 
 export const Feed = () => {
 
@@ -48,7 +49,7 @@ export const Feed = () => {
         }
         try {
             setCreateInLoading(true)
-            await axios.post(`https://labeddit-backend-ka62.onrender.com/posts`, body,
+            await axios.post(`${BASE_URL}/posts`, body,
             {
                 headers: {
                     Authorization: localStorage.getItem('token')
@@ -66,7 +67,7 @@ export const Feed = () => {
     return(
         <PrincipalDiv>
             <Header/>
-            <InputPost placeholder="Escreva seu post..." value={newPost} onChange={(e) => setNewPost(e.target.value)}/>
+            <Textarea placeholder="Digite seu post..." value={newPost} onChange={(e) => setNewPost(e.target.value)}/>
             {createInLoading ? 
                 <Spinner marginTop={"14px"} marginBottom={"28px"}/>
                 :
@@ -80,6 +81,8 @@ export const Feed = () => {
                     <CardPost
                         post={post}
                         key={post.id}
+                        getPosts={getPosts}
+                        isOnFeed={isOnFeed}
                     />
                 ))
             }

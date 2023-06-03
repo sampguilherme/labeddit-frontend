@@ -13,6 +13,16 @@ export const PostDiv = styled.div`
     margin-top: 24px;
 `
 
+export const Textarea = styled.textarea`
+    margin-top: 24px;
+    padding: 12px;
+    width: 364px;
+    height: 132px;
+    border-radius: 12px;
+    background-color: #ededed;
+    resize: none;
+`
+
 export const InputComment = styled.input`
     display: flex;
     width: 364px;

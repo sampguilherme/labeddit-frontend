@@ -6,19 +6,14 @@ export const PrincipalDiv = styled.div`
     align-items: center;
 `
 
-export const InputPost = styled.input`
-    display: flex;
+export const Textarea = styled.textarea`
     margin-top: 24px;
+    padding: 12px;
     width: 364px;
-    height: 131px;
-    background-color: #ededed;
+    height: 132px;
     border-radius: 12px;
-    padding: 18px;    
-    ::placeholder {
-        position: absolute;
-        top: 18px;
-        left: 14px;
-    }
+    background-color: #ededed;
+    resize: none;
 `
 
 export const PostButton = styled.button`

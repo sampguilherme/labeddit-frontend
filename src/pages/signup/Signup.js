@@ -44,17 +44,18 @@ export const Signup = () => {
             password,
         }
         try {
-                setInLoading(true)
-                const response = await axios.post(`${BASE_URL}/users/signup`, body)
+            setInLoading(true)
+            const response = await axios.post(`${BASE_URL}/users/signup`, body)
 
-                localStorage.setItem('token', response.data.token)
+            localStorage.setItem('token', response.data.token)
+            localStorage.setItem('userId', response.data.userId)
 
-                setNickname("")
-                setEmail("")
-                setPassword("")
-                setError("")
-                setInLoading(false)
-                goToFeedPage(navigate)
+            setNickname("")
+            setEmail("")
+            setPassword("")
+            setError("")
+            setInLoading(false)
+            goToFeedPage(navigate)
         } catch(error) {
             setInLoading(false)
             console.log(error)

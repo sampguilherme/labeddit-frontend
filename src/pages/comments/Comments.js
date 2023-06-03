@@ -6,7 +6,7 @@ import axios from "axios"
 import { Spinner } from "@chakra-ui/react"
 import { CardComments } from "../../components/CommentsCard/CardComments"
 import { Header } from "../../components/Header/Header"
-import { CommentButton, InputComment, Line, PostDiv, PrincipalDiv } from "./CommentsStyles"
+import { CommentButton, InputComment, Line, PostDiv, PrincipalDiv, Textarea } from "./CommentsStyles"
 
 export const Comments = () => {
 
@@ -58,7 +58,7 @@ export const Comments = () => {
         }
         try {
             
-            await axios.post(`https://labeddit-backend-ka62.onrender.com/comments/${postId}`, body,
+            await axios.post(`${BASE_URL}/comments/${postId}`, body,
             {
                 headers: {
                     Authorization: localStorage.getItem('token')
@@ -74,7 +74,7 @@ export const Comments = () => {
     }
 
     useEffect(() => {
-        getPost()
+        getPost(postId)
         getComments()
     }, [])
 
@@ -88,12 +88,12 @@ export const Comments = () => {
                         <CardPost
                             post={post}
                             key={post.id}
-                            inCommentPage={isOnCommentPage}
+                            isOnCommentPage={isOnCommentPage}
                          />
                         ))
                     }
 
-                    <InputComment placeholder="Escreva seu comentário..." value={newComment} onChange={(e) => setNewComment(e.target.value)}/>
+                    <Textarea placeholder="Digite seu post..." value={newComment} onChange={(e) => setNewComment(e.target.value)}/>
                     <CommentButton onClick={() => createComment()}>
                         Responder</CommentButton>
                 </PostDiv>
