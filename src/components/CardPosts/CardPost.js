@@ -1,5 +1,18 @@
 import { useState } from "react";
-import { CommentButton, CommentsDiv, ContentP, LikeAndCommentsDiv, LikeAndDislikesDiv, LikeDislkeButton, LikeAndCommentsQuantity, PrincipalDiv, SentUserP, TopDiv } from "./CardPostStyles"
+import { 
+    CommentButton,
+    CommentsDiv,
+    ContentP,
+    LikeAndCommentsDiv,
+    LikeAndDislikesDiv,
+    LikeDislkeButton,
+    LikeAndCommentsQuantity,
+    PrincipalDiv,
+    SentUserP,
+    TopDiv,
+    Textarea, 
+    EditArea 
+} from "./CardPostStyles"
 import { TbArrowBigUp, TbArrowBigDown } from "react-icons/tb";
 import { TfiComment } from "react-icons/tfi";
 import axios from "axios";
@@ -30,9 +43,9 @@ export const CardPost = ({post, isOnCommentPage, getPosts, isOnFeed}) => {
 
     const [commentsQuantity, setCommentsQuantity] = useState([])
 
-    const [ postEdited, setPostEdited ] = useState("")
-
+    const [ postEdited, setPostEdited ] = useState(content)
     const [ postInEdit, setPostInEdit ] = useState(false)
+    const [ postHasBeenEdited, setPostHasBeenEdited ] = useState(false)
 
     const navigate = useNavigate()
 
@@ -74,11 +87,15 @@ export const CardPost = ({post, isOnCommentPage, getPosts, isOnFeed}) => {
     }
 
     const editPost = async () => {
-        const body = ""
+        const body = {
+            content: postEdited
+        }
         try{
             await axios.put(`${BASE_URL}/posts/${id}`, body, HEADERS)
+            setPostInEdit(false)
+            setPostHasBeenEdited(true)
         } catch (error) {
-
+            console.log(error)
         }
     }
 
@@ -114,8 +131,23 @@ export const CardPost = ({post, isOnCommentPage, getPosts, isOnFeed}) => {
                         </MenuList>
                     </Menu>
                     : <></>}
-                </TopDiv>
-            <ContentP>{content}</ContentP>
+            </TopDiv>
+            {postInEdit 
+                ? <>
+                    <Textarea type="text" value={postEdited} onChange={(e) => setPostEdited(e.target.value)}/>
+                    <EditArea>
+                        <Button onClick={() => editPost()}>Salvar</Button>
+                        <Button onClick={() => setPostInEdit(false)}>Cancelar</Button>
+                    </EditArea>
+                    
+                </>
+                : <ContentP>
+                    {postHasBeenEdited 
+                        ? postEdited
+                        : content
+                    }
+                </ContentP>}
+            
             <LikeAndCommentsDiv>
                 <LikeAndDislikesDiv>
                     <LikeDislkeButton 
