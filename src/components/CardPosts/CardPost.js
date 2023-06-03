@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { MdDelete } from "react-icons/md";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import { FiEdit } from "react-icons/fi";
+import { HEADERS } from "../../constants/headers";
 
 import {
     Menu,
@@ -28,6 +30,10 @@ export const CardPost = ({post, isOnCommentPage, getPosts, isOnFeed}) => {
 
     const [commentsQuantity, setCommentsQuantity] = useState([])
 
+    const [ postEdited, setPostEdited ] = useState("")
+
+    const [ postInEdit, setPostInEdit ] = useState(false)
+
     const navigate = useNavigate()
 
     const LikeOrDislikePost = async (likeOrDislike) => {
@@ -35,12 +41,7 @@ export const CardPost = ({post, isOnCommentPage, getPosts, isOnFeed}) => {
             like: likeOrDislike
         }
         try {
-                await axios.put(`${BASE_URL}/posts/${id}/like`, body,
-                {
-                    headers: {
-                        Authorization: localStorage.getItem('token')
-                    }
-                })
+                await axios.put(`${BASE_URL}/posts/${id}/like`, body, HEADERS)
                 setLikesQuantity(likes)
 
                 
@@ -51,13 +52,7 @@ export const CardPost = ({post, isOnCommentPage, getPosts, isOnFeed}) => {
 
     const getComments = async () => {
         try {
-            const response = await axios.get(`${BASE_URL}/comments/${id}`,
-                {
-                    headers: {
-                        Authorization: localStorage.getItem('token')
-                    }
-                }
-            )
+            const response = await axios.get(`${BASE_URL}/comments/${id}`, HEADERS)
             setCommentsQuantity(response.data.length)
         } catch (error) {
             console.log(error)
@@ -66,13 +61,7 @@ export const CardPost = ({post, isOnCommentPage, getPosts, isOnFeed}) => {
 
     const deletePost = async () => {
         try{
-            await axios.delete(`${BASE_URL}/posts/${id}`, 
-                {
-                    headers: {
-                        Authorization: localStorage.getItem('token')
-                    }
-                }
-            )
+            await axios.delete(`${BASE_URL}/posts/${id}`, HEADERS )
             if(isOnCommentPage){
                 goToFeedPage(navigate)
             }
@@ -81,6 +70,15 @@ export const CardPost = ({post, isOnCommentPage, getPosts, isOnFeed}) => {
             }
         } catch (error) {
             console.log(error)
+        }
+    }
+
+    const editPost = async () => {
+        const body = ""
+        try{
+            await axios.put(`${BASE_URL}/posts/${id}`, body, HEADERS)
+        } catch (error) {
+
         }
     }
 
@@ -106,11 +104,10 @@ export const CardPost = ({post, isOnCommentPage, getPosts, isOnFeed}) => {
                             opacity="80%"
                         />
                         <MenuList>
-                            {/*
-                            <MenuItem icon={<FiEdit />}>
+                            <MenuItem icon={<FiEdit />} onClick={() => setPostInEdit(true)}>
                                 Edit post
                             </MenuItem>
-                            */}
+    
                             <MenuItem  icon={<MdDelete />} onClick={() => deletePost()}>
                                 Delete post
                             </MenuItem>
