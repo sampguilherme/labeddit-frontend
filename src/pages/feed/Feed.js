@@ -1,14 +1,11 @@
-import { useContext } from "react"
 import { CardPost } from "../../components/CardPosts/CardPost"
 import { Header } from "../../components/Header/Header"
-import { GlobalContext } from "../../contexts/GlobalContext"
 import { Line, PostButton, PrincipalDiv, Textarea } from "./FeedStyles"
 import { useEffect } from "react"
 import axios from "axios"
 import { useState } from "react"
-import { Spinner } from '@chakra-ui/react'
+import { Spinner, useDisclosure } from '@chakra-ui/react'
 import { BASE_URL } from "../../constants/apiUrl"
-import { Input } from '@chakra-ui/react'
 
 export const Feed = () => {
 
@@ -33,15 +30,12 @@ export const Feed = () => {
                 )
                 setPostsInLoading(false)
                 setPosts(response.data.reverse())
+                console.log(response.data)
         } catch (error) {
             setPostsInLoading(false)
             console.log(error)
         }
     }
-
-    useEffect(() => {
-        getPosts()
-    }, [])
 
     const createPost = async () => {
         const body = {
@@ -64,6 +58,10 @@ export const Feed = () => {
         }
     }
 
+    useEffect(() => {
+        getPosts()
+    }, [])
+
     return(
         <PrincipalDiv>
             <Header/>
@@ -81,8 +79,6 @@ export const Feed = () => {
                     <CardPost
                         post={post}
                         key={post.id}
-                        getPosts={getPosts}
-                        isOnFeed={isOnFeed}
                     />
                 ))
             }
