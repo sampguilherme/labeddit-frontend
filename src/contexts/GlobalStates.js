@@ -12,6 +12,8 @@ export const GlobalState = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+
+
     const getUsers = async () => {
         try {
             const response = await axios.get(`${BASE_URL}/users`)
@@ -20,6 +22,7 @@ export const GlobalState = () => {
             console.log(error)
         }
     }
+
 
     return {
         getUsers,

@@ -90,7 +90,9 @@ export const TopDiv = styled.div`
 `
 
 export const EditArea = styled.div`
-
+    display: flex;
+    justify-content: space-between;
+    margin: 4px;
 `
 
 export const Textarea = styled.textarea`

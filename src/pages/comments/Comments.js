@@ -6,7 +6,7 @@ import axios from "axios"
 import { Spinner } from "@chakra-ui/react"
 import { CardComments } from "../../components/CommentsCard/CardComments"
 import { Header } from "../../components/Header/Header"
-import { CommentButton, InputComment, Line, PostDiv, PrincipalDiv, Textarea } from "./CommentsStyles"
+import { CommentButton, Line, PostDiv, PrincipalDiv, Textarea } from "./CommentsStyles"
 
 export const Comments = () => {
 
@@ -16,6 +16,7 @@ export const Comments = () => {
     const [postInLoading, setPostInLoading] = useState(false)
     const [comments, setComments] = useState([])
     const [newComment, setNewComment] = useState()
+    const [ commentsQuantity, setCommentsQuantity ] = useState()
 
     const { postId } = useParams()
 
@@ -46,7 +47,10 @@ export const Comments = () => {
                     }
                 }
             )
-            setComments(response.data.reverse())
+            if(isOnCommentPage){
+                setComments(response.data.reverse())
+            }
+            setCommentsQuantity(response.data.length)
         } catch (error) {
             console.log(error)
         }
@@ -64,9 +68,9 @@ export const Comments = () => {
                     Authorization: localStorage.getItem('token')
                 }
             })
-            
             setNewComment("")
             getComments()
+            setCommentsQuantity(commentsQuantity + 1)
         } catch (error) {
             
             console.log(error)
