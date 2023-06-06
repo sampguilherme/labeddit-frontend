@@ -11,18 +11,28 @@ import {
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 import { goToFeedPage } from '../../Router/coordinator';
-import { HEADERS } from '../../constants/headers';
 import { BASE_URL } from '../../constants/apiUrl';
+import { GlobalContext } from "../../contexts/GlobalContext"
+import { useContext } from 'react';
 
 
 
 export const DeleteModal = ({isOpen, onClose, setPostDeleted, id, isOnCommentPage}) => {
 
+  const context = useContext(GlobalContext)
+  const { token } = context
+
 const navigate = useNavigate()
+
+const headers = {
+  headers: {
+      Authorization: token
+  }
+}
 
 const deletePost = async () => {
   try{
-      await axios.delete(`${BASE_URL}/posts/${id}`, HEADERS )
+      await axios.delete(`${BASE_URL}/posts/${id}`, headers )
       if(isOnCommentPage){
           goToFeedPage(navigate)
       }

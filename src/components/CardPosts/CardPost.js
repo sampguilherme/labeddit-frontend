@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { 
     CommentButton,
     CommentsDiv,
@@ -22,9 +22,7 @@ import { useNavigate } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { FiEdit } from "react-icons/fi";
-import { HEADERS } from "../../constants/headers";
 import { useDisclosure } from '@chakra-ui/react';
-
 import {
     Menu,
     MenuButton,
@@ -34,8 +32,12 @@ import {
     IconButton
 } from '@chakra-ui/react'
 import { DeleteModal } from "../DeleteModal/DeleteModal";
+import { GlobalContext } from "../../contexts/GlobalContext";
 
 export const CardPost = ({post, isOnCommentPage }) => {
+
+    const context = useContext(GlobalContext)
+    const { token, userId } = context
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -52,12 +54,18 @@ export const CardPost = ({post, isOnCommentPage }) => {
 
     const navigate = useNavigate()
 
+    const headers = {
+        headers: {
+            Authorization: token
+        }
+    }
+
     const LikeOrDislikePost = async (likeOrDislike) => {
         const body = {
             like: likeOrDislike
         }
         try {
-                await axios.put(`${BASE_URL}/posts/${id}/like`, body, HEADERS)
+                await axios.put(`${BASE_URL}/posts/${id}/like`, body, headers)
                 setLikesQuantity(likes)
         } catch (error) {
             console.log(error)
@@ -69,7 +77,7 @@ export const CardPost = ({post, isOnCommentPage }) => {
             content: postEdited
         }
         try{
-            await axios.put(`${BASE_URL}/posts/${id}`, body, HEADERS)
+            await axios.put(`${BASE_URL}/posts/${id}`, body, headers)
             setPostInEdit(false)
             setPostHasBeenEdited(true)
         } catch (error) {
@@ -85,7 +93,7 @@ return (
                 
                 <TopDiv>
                     <SentUserP>Enviado por: {creator.name}</SentUserP>
-                    {creator.id === localStorage.getItem('userId') 
+                    {creator.id === userId 
                         ? <Menu bgColor='black' mg="20px">
                             <MenuButton
                                 as={IconButton}

@@ -27,7 +27,11 @@ export const Signup = () => {
         password,
         setPassword,
         inLoading,
-        setInLoading
+        setInLoading,
+        setUserId,
+        userId,
+        setToken,
+        token
     } = context
 
     useEffect(() => {
@@ -47,15 +51,16 @@ export const Signup = () => {
             setInLoading(true)
             const response = await axios.post(`${BASE_URL}/users/signup`, body)
 
-            localStorage.setItem('token', response.data.token)
-            localStorage.setItem('userId', response.data.userId)
-
             setNickname("")
             setEmail("")
             setPassword("")
             setError("")
             setInLoading(false)
             goToFeedPage(navigate)
+            setToken(response.data.token)
+            setUserId(response.data.userId)
+            localStorage.setItem('token', token)
+            localStorage.setItem('userId', userId)
         } catch(error) {
             setInLoading(false)
             console.log(error)

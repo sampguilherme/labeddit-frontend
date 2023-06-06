@@ -1,13 +1,17 @@
 import { CardPost } from "../../components/CardPosts/CardPost"
 import { Header } from "../../components/Header/Header"
 import { Line, PostButton, PrincipalDiv, Textarea } from "./FeedStyles"
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
 import axios from "axios"
 import { useState } from "react"
 import { Spinner, useDisclosure } from '@chakra-ui/react'
 import { BASE_URL } from "../../constants/apiUrl"
+import { GlobalContext } from "../../contexts/GlobalContext"
 
 export const Feed = () => {
+
+    const context = useContext(GlobalContext)
+    const { token } = context
 
     const isOnFeed = true
 
@@ -18,19 +22,20 @@ export const Feed = () => {
     const [postsInLoading, setPostsInLoading] = useState(false)
     const [createInLoading, setCreateInLoading] = useState(false)
 
+    const headers = {
+        headers: {
+            Authorization: token
+        }
+    }
+
+    console.log(token)
+
     const getPosts = async () => {
         try {
                 setPostsInLoading(true)
-                const response = await axios.get(`${BASE_URL}/posts`,
-                    {
-                        headers: {
-                            Authorization: localStorage.getItem('token')
-                        }
-                    }
-                )
+                const response = await axios.get(`${BASE_URL}/posts`, headers)
                 setPostsInLoading(false)
                 setPosts(response.data.reverse())
-                console.log(response.data)
         } catch (error) {
             setPostsInLoading(false)
             console.log(error)
@@ -43,12 +48,7 @@ export const Feed = () => {
         }
         try {
             setCreateInLoading(true)
-            await axios.post(`${BASE_URL}/posts`, body,
-            {
-                headers: {
-                    Authorization: localStorage.getItem('token')
-                }
-            })
+            await axios.post(`${BASE_URL}/posts`, body, headers)
             setCreateInLoading(false)
             setNewPost("")
             getPosts()
