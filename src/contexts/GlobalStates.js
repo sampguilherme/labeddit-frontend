@@ -12,7 +12,8 @@ export const GlobalState = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-
+    const [token, setToken] = useState()
+    const [userId, setUserId] = useState()
 
     const getUsers = async () => {
         try {
@@ -35,5 +36,9 @@ export const GlobalState = () => {
         setPassword,
         inLoading,
         setInLoading,
+        token,
+        setToken,
+        userId,
+        setUserId
     }
 }

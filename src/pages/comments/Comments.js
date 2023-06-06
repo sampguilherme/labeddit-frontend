@@ -1,14 +1,17 @@
 import { useParams } from "react-router-dom"
 import { CardPost } from "../../components/CardPosts/CardPost"
 import { BASE_URL } from "../../constants/apiUrl"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import axios from "axios"
 import { Spinner } from "@chakra-ui/react"
 import { CardComments } from "../../components/CommentsCard/CardComments"
 import { Header } from "../../components/Header/Header"
 import { CommentButton, Line, PostDiv, PrincipalDiv, Textarea } from "./CommentsStyles"
+import { GlobalContext } from "../../contexts/GlobalContext"
 
 export const Comments = () => {
+
+    const { token } = useContext(GlobalContext)
 
     const isOnCommentPage = true
 
@@ -20,16 +23,16 @@ export const Comments = () => {
 
     const { postId } = useParams()
 
+    const headers = {
+        headers: {
+            Authorization: token
+        }
+    }
+
     const getPost = async () => {
         try {
                 setPostInLoading(true)
-                const response = await axios.get(`${BASE_URL}/posts/?q=${postId}`,
-                    {
-                        headers: {
-                            Authorization: localStorage.getItem('token')
-                        }
-                    }
-                )
+                const response = await axios.get(`${BASE_URL}/posts/?q=${postId}`, headers)
                 setPostInLoading(false)
                 setPost(response.data)
         } catch (error) {
@@ -40,13 +43,7 @@ export const Comments = () => {
 
     const getComments = async () => {
         try {
-            const response = await axios.get(`${BASE_URL}/comments/${postId}`,
-                {
-                    headers: {
-                        Authorization: localStorage.getItem('token')
-                    }
-                }
-            )
+            const response = await axios.get(`${BASE_URL}/comments/${postId}`, headers)
             if(isOnCommentPage){
                 setComments(response.data.reverse())
             }
@@ -62,12 +59,7 @@ export const Comments = () => {
         }
         try {
             
-            await axios.post(`${BASE_URL}/comments/${postId}`, body,
-            {
-                headers: {
-                    Authorization: localStorage.getItem('token')
-                }
-            })
+            await axios.post(`${BASE_URL}/comments/${postId}`, body, headers)
             setNewComment("")
             getComments()
             setCommentsQuantity(commentsQuantity + 1)

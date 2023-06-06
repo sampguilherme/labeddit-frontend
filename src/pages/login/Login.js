@@ -22,7 +22,11 @@ export const Login = () => {
         inLoading,
         setInLoading,
         error,
-        setError
+        setError,
+        setUserId,
+        userId,
+        setToken,
+        token
     } = context
 
     useEffect(() => {
@@ -40,13 +44,15 @@ export const Login = () => {
             setInLoading(true)
             const response = await axios.post(`${BASE_URL}/users/login`, body)
 
-            localStorage.setItem('token', response.data.token)
-            localStorage.setItem('userId', response.data.userId)
             setEmail("")
             setPassword("")
             setError("")
             setInLoading(false)  
             goToFeedPage(navigate)
+            setToken(response.data.token)
+            setUserId(response.data.userId)
+            localStorage.setItem('token', token)
+            localStorage.setItem('userId', userId)
         } catch (error) {
             setInLoading(false)
             console.log(error)
