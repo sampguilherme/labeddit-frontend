@@ -106,11 +106,11 @@ return (
                             />
                             <MenuList>
                                 <MenuItem icon={<FiEdit />} onClick={() => setPostInEdit(true)}>
-                                    Edit post
+                                    Editar post
                                 </MenuItem>
         
                                 <MenuItem  icon={<MdDelete />} onClick={onOpen}>
-                                    Delete post
+                                    Deletar post
                                 </MenuItem>
                                 <DeleteModal isOpen={isOpen}
                                     onClose={onClose}

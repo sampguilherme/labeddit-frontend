@@ -86,7 +86,7 @@ export const Comments = () => {
                         ))
                     }
 
-                    <Textarea placeholder="Digite seu post..." value={newComment} onChange={(e) => setNewComment(e.target.value)}/>
+                    <Textarea placeholder="Digite seu comentário..." value={newComment} onChange={(e) => setNewComment(e.target.value)}/>
                     <CommentButton onClick={() => createComment()}>
                         Responder</CommentButton>
                 </PostDiv>
