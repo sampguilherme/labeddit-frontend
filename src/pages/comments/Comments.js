@@ -1,17 +1,14 @@
 import { useParams } from "react-router-dom"
 import { CardPost } from "../../components/CardPosts/CardPost"
 import { BASE_URL } from "../../constants/apiUrl"
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
 import { Spinner } from "@chakra-ui/react"
 import { CardComments } from "../../components/CommentsCard/CardComments"
 import { Header } from "../../components/Header/Header"
 import { CommentButton, Line, PostDiv, PrincipalDiv, Textarea } from "./CommentsStyles"
-import { GlobalContext } from "../../contexts/GlobalContext"
 
 export const Comments = () => {
-
-    const { token } = useContext(GlobalContext)
 
     const isOnCommentPage = true
 

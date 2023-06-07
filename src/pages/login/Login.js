@@ -23,10 +23,6 @@ export const Login = () => {
         setInLoading,
         error,
         setError,
-        setUserId,
-        userId,
-        setToken,
-        token
     } = context
 
     useEffect(() => {
@@ -49,10 +45,8 @@ export const Login = () => {
             setError("")
             setInLoading(false)  
             goToFeedPage(navigate)
-            setToken(response.data.token)
-            setUserId(response.data.userId)
-            localStorage.setItem('token', token)
-            localStorage.setItem('userId', userId)
+            localStorage.setItem('token', response.data.token)
+            localStorage.setItem('userId', response.data.userId)
         } catch (error) {
             setInLoading(false)
             console.log(error)
