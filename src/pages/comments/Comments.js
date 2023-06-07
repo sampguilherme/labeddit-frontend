@@ -100,6 +100,8 @@ export const Comments = () => {
                 :
                 comments.map((comment) => (
                     <CardComments
+                        setCommentsQuantity={setCommentsQuantity}
+                        commentsQuantity={commentsQuantity}
                         comment={comment}
                         key={comment.id}
                     />

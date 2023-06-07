@@ -13,7 +13,7 @@ import axios from "axios";
 import { goToFeedPage } from '../../Router/coordinator';
 import { BASE_URL } from '../../constants/apiUrl';
 
-export const DeleteModal = ({isOpen, onClose, setPostDeleted, id, isOnCommentPage, isComment, setCommentDeleted}) => {
+export const DeleteModal = ({isOpen, onClose, setPostDeleted, id, isOnCommentPage, isComment, setCommentDeleted, setCommentsQuantity, commentsQuantity}) => {
 
 const navigate = useNavigate()
 
@@ -28,6 +28,7 @@ const deletePostOrComment = async () => {
       try{
         await axios.delete(`${BASE_URL}/comments/${id}`, headers)
         setCommentDeleted(true)
+        setCommentsQuantity(commentsQuantity - 1)
       } catch (error){
         console.log(error)
       }

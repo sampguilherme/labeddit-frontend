@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/react'
 import { DeleteModal } from "../DeleteModal/DeleteModal";
 
-export const CardComments = ({comment}) => {
+export const CardComments = ({comment, setCommentsQuantity, commentsQuantity}) => {
 
     const userId = localStorage.getItem('userId')
 
@@ -28,6 +28,7 @@ export const CardComments = ({comment}) => {
     const [ commentInEdit, setCommentInEdit ] = useState(false)
     const [ commentEdited, setCommentEdited ] = useState(content)
     const [ commentDeleted, setCommentDeleted ] = useState(false)
+    const [ commentHasBeenEdited, setCommentHasBeenEdited ] = useState(false)
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -46,6 +47,19 @@ export const CardComments = ({comment}) => {
         try {
                 await axios.put(`${BASE_URL}/comments/${id}/like`, body, headers)
                 setLikesQuantity(likes + 1)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const editComment = async () => {
+        const body = {
+            content: commentEdited
+        }
+        try{
+            await axios.put(`${BASE_URL}/comments/${id}`, body, headers)
+            setCommentInEdit(false)
+            setCommentHasBeenEdited(true)
         } catch (error) {
             console.log(error)
         }
@@ -80,10 +94,12 @@ return (
                             Deletar comentário
                         </MenuItem>
                         <DeleteModal isOpen={isOpen}
-                                onClose={onClose}
-                                setCommentDeleted={setCommentDeleted}
-                                id={id}
-                                isComment={isComment}/>
+                            onClose={onClose}
+                            setCommentDeleted={setCommentDeleted}
+                            id={id}
+                            setCommentsQuantity={setCommentsQuantity}
+                            commentsQuantity={commentsQuantity}
+                            isComment={isComment}/>
                     </MenuList>
                 </Menu>
                 : <></>}
@@ -96,7 +112,8 @@ return (
                         bgColor={"#FBFBFB"}
                         border={"1px solid #3182CE"}
                         h="32px"
-                        _hover={{bgColor: "#3182CE", color: "white"}}>
+                        _hover={{bgColor: "#3182CE", color: "white"}}
+                        onClick={() => editComment()}>
                             Salvar
                     </Button>
                     <Button
@@ -109,7 +126,12 @@ return (
                     </Button>
                 </EditArea>
             </>
-            : <ContentP>{content}</ContentP>}
+            : <ContentP>
+                {commentHasBeenEdited 
+                    ? commentEdited
+                    : content
+                }
+            </ContentP>}
         
             <LikeAndDislikesDiv>
                 <LikeDislkeButton 
