@@ -24,11 +24,9 @@ export const Feed = () => {
 
     const headers = {
         headers: {
-            Authorization: token
+            Authorization: localStorage.getItem('token')
         }
     }
-
-    console.log(token)
 
     const getPosts = async () => {
         try {

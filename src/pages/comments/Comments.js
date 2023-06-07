@@ -25,7 +25,7 @@ export const Comments = () => {
 
     const headers = {
         headers: {
-            Authorization: token
+            Authorization: localStorage.getItem('token')
         }
     }
 
@@ -35,6 +35,7 @@ export const Comments = () => {
                 const response = await axios.get(`${BASE_URL}/posts/?q=${postId}`, headers)
                 setPostInLoading(false)
                 setPost(response.data)
+                setCommentsQuantity(response.data[0].comments)
         } catch (error) {
             setPostInLoading(false)
             console.log(error)
@@ -44,10 +45,7 @@ export const Comments = () => {
     const getComments = async () => {
         try {
             const response = await axios.get(`${BASE_URL}/comments/${postId}`, headers)
-            if(isOnCommentPage){
                 setComments(response.data.reverse())
-            }
-            setCommentsQuantity(response.data.length)
         } catch (error) {
             console.log(error)
         }
@@ -70,9 +68,10 @@ export const Comments = () => {
     }
 
     useEffect(() => {
-        getPost(postId)
+        getPost()
         getComments()
     }, [])
+
 
     return(
         <PrincipalDiv>
@@ -84,6 +83,7 @@ export const Comments = () => {
                         <CardPost
                             post={post}
                             key={post.id}
+                            commentsQuantity={commentsQuantity}
                             isOnCommentPage={isOnCommentPage}
                          />
                         ))
