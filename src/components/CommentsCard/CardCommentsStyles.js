@@ -63,3 +63,9 @@ export const LikeAndCommentsQuantity = styled.p`
     text-align: center;
 `
 
+export const TopDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { 
     CommentButton,
     CommentsDiv,
@@ -32,12 +32,10 @@ import {
     IconButton
 } from '@chakra-ui/react'
 import { DeleteModal } from "../DeleteModal/DeleteModal";
-import { GlobalContext } from "../../contexts/GlobalContext";
 
-export const CardPost = ({post, isOnCommentPage }) => {
+export const CardPost = ({post, isOnCommentPage, commentsQuantity}) => {
 
-    const context = useContext(GlobalContext)
-    const { token, userId } = context
+    const userId = localStorage.getItem('userId')
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -56,7 +54,7 @@ export const CardPost = ({post, isOnCommentPage }) => {
 
     const headers = {
         headers: {
-            Authorization: token
+            Authorization: localStorage.getItem('token')
         }
     }
 
@@ -174,7 +172,7 @@ return (
                         ? <><TfiComment opacity="70%"/></>
                         : <><CommentButton onClick={() => goToCommentsPage(navigate, id)}> <TfiComment/> </CommentButton></>
                         }
-                        <LikeAndCommentsQuantity>{comments}</LikeAndCommentsQuantity>
+                        <LikeAndCommentsQuantity>{isOnCommentPage ? commentsQuantity : comments}</LikeAndCommentsQuantity>
                     </CommentsDiv>
                 </LikeAndCommentsDiv>
             </PrincipalDiv>

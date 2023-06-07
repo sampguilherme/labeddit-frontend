@@ -26,7 +26,7 @@ const navigate = useNavigate()
 
 const headers = {
   headers: {
-      Authorization: token
+      Authorization: localStorage.getItem('token')
   }
 }
 
