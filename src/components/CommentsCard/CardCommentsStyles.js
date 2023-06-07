@@ -69,3 +69,20 @@ export const TopDiv = styled.div`
     align-items: center;
 `
 
+export const EditArea = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin: 4px;
+`
+
+export const Textarea = styled.textarea`
+    resize: none;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    padding-left: 8px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #000000;
+    font-size: 18px;
+    font-weight: 400;
+`
+

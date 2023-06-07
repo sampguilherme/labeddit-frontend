@@ -14,7 +14,6 @@ export const PostDiv = styled.div`
 `
 
 export const Textarea = styled.textarea`
-    margin-top: 24px;
     padding: 12px;
     width: 364px;
     height: 132px;
