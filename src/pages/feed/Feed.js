@@ -1,17 +1,13 @@
 import { CardPost } from "../../components/CardPosts/CardPost"
 import { Header } from "../../components/Header/Header"
 import { Line, PostButton, PrincipalDiv, Textarea } from "./FeedStyles"
-import { useContext, useEffect } from "react"
+import { useEffect } from "react"
 import axios from "axios"
 import { useState } from "react"
 import { Spinner, useDisclosure } from '@chakra-ui/react'
 import { BASE_URL } from "../../constants/apiUrl"
-import { GlobalContext } from "../../contexts/GlobalContext"
 
 export const Feed = () => {
-
-    const context = useContext(GlobalContext)
-    const { token } = context
 
     const isOnFeed = true
 

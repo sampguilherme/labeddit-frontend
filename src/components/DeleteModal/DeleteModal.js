@@ -12,15 +12,8 @@ import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 import { goToFeedPage } from '../../Router/coordinator';
 import { BASE_URL } from '../../constants/apiUrl';
-import { GlobalContext } from "../../contexts/GlobalContext"
-import { useContext } from 'react';
-
-
 
 export const DeleteModal = ({isOpen, onClose, setPostDeleted, id, isOnCommentPage}) => {
-
-  const context = useContext(GlobalContext)
-  const { token } = context
 
 const navigate = useNavigate()
 
