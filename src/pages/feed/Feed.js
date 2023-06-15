@@ -30,6 +30,7 @@ export const Feed = () => {
                 const response = await axios.get(`${BASE_URL}/posts`, headers)
                 setPostsInLoading(false)
                 setPosts(response.data.reverse())
+                console.log(response.data)
         } catch (error) {
             setPostsInLoading(false)
             console.log(error)
@@ -73,6 +74,7 @@ export const Feed = () => {
                     <CardPost
                         post={post}
                         key={post.id}
+                        vote={post.vote}
                     />
                 ))
             }

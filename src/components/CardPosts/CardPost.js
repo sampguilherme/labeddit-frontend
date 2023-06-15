@@ -13,7 +13,7 @@ import {
     Textarea, 
     EditArea 
 } from "./CardPostStyles"
-import { TbArrowBigUp, TbArrowBigDown } from "react-icons/tb";
+import { TbArrowBigUp, TbArrowBigUpFilled, TbArrowBigDown, TbArrowBigDownFilled } from "react-icons/tb";
 import { TfiComment } from "react-icons/tfi";
 import axios from "axios";
 import { BASE_URL } from "../../constants/apiUrl";
@@ -39,11 +39,11 @@ export const CardPost = ({post, isOnCommentPage, commentsQuantity}) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const {content, likes, creator, id, comments } = post
+    const {content, likes, creator, id, comments, likedOrDisliked} = post
 
     const [likesQuantity, setLikesQuantity] = useState(likes)
 
-    
+    const [ dislikedOrLiked, setDislikedOrLiked ] = useState(likedOrDisliked)
 
     const [ postEdited, setPostEdited ] = useState(content)
     const [ postInEdit, setPostInEdit ] = useState(false)
@@ -64,7 +64,25 @@ export const CardPost = ({post, isOnCommentPage, commentsQuantity}) => {
         }
         try {
                 await axios.put(`${BASE_URL}/posts/${id}/like`, body, headers)
-                setLikesQuantity(likes)
+
+                if(likeOrDislike){
+                    if(dislikedOrLiked !== "ALREADY LIKED"){
+                        setDislikedOrLiked("ALREADY LIKED")
+                        setLikesQuantity(likesQuantity + 1)
+                    } else {
+                        setDislikedOrLiked(null)
+                        setLikesQuantity(likesQuantity - 1)
+                    } 
+                } else if(likeOrDislike === false){
+                    if(dislikedOrLiked !== "ALREADY DISLIKED"){
+                        setDislikedOrLiked("ALREADY DISLIKED")
+                        if(dislikedOrLiked === "ALREADY LIKED"){
+                            setLikesQuantity(likesQuantity - 1)
+                        }
+                    } else {
+                        setDislikedOrLiked(null)
+                    }
+                }
         } catch (error) {
             console.log(error)
         }
@@ -158,14 +176,14 @@ return (
                             onClick={
                                 () => LikeOrDislikePost(true)
                             }
-                        > <TbArrowBigUp/> </LikeDislkeButton>
+                        > {dislikedOrLiked === "ALREADY LIKED" ? <TbArrowBigUpFilled color="blue" /> : <TbArrowBigUp className="arrowLike"/>} </LikeDislkeButton>
 
                         <LikeAndCommentsQuantity>{likesQuantity}</LikeAndCommentsQuantity>
                         <LikeDislkeButton
                             onClick={
                                 () => LikeOrDislikePost(false)
                             }
-                        > <TbArrowBigDown/> </LikeDislkeButton>
+                        > {dislikedOrLiked === "ALREADY DISLIKED" ? <TbArrowBigDownFilled color="red"/> : <TbArrowBigDown className="arrowDislike"/>} </LikeDislkeButton>
                     </LikeAndDislikesDiv>
                     <CommentsDiv>
                     {isOnCommentPage 
