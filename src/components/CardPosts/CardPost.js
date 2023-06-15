@@ -32,10 +32,6 @@ import {
     IconButton
 } from '@chakra-ui/react'
 import { DeleteModal } from "../DeleteModal/DeleteModal";
-import likeVote from "../../assets/upvote.png";
-import dislikeVote from "../../assets/downvote.png";
-import liked from "../../assets/activeUpvote.png";
-import disliked from "../../assets/activeDownvote.png";
 
 export const CardPost = ({post, isOnCommentPage, commentsQuantity}) => {
 
@@ -87,20 +83,6 @@ export const CardPost = ({post, isOnCommentPage, commentsQuantity}) => {
                         setDislikedOrLiked(null)
                     }
                 }
-
-                // if(dislikedOrLiked === null && likeOrDislike){
-                //      setDislikedOrLiked("ALREADY LIKED")
-                //  } else if(dislikedOrLiked === "ALREADY LIKED" && likeOrDislike){
-                //      setDislikedOrLiked(null)
-                //  } else if(dislikedOrLiked === "ALREADY DISLIKED" && likeOrDislike){
-                //      setDislikedOrLiked("ALREADY LIKED")
-                //  } else if(dislikedOrLiked === null && likeOrDislike === false){
-                //      setDislikedOrLiked("ALREADY DISLIKED")
-                //  } else if(dislikedOrLiked === "ALREADY DISLIKED" && likeOrDislike === false){
-                //      setDislikedOrLiked(null)
-                //  } else if(dislikedOrLiked === "ALREADY LIKED" && likeOrDislike === false){
-                //      setDislikedOrLiked("ALREADY DISLIKED")
-                //  }
         } catch (error) {
             console.log(error)
         }
