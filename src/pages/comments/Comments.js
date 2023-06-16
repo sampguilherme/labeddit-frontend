@@ -43,6 +43,7 @@ export const Comments = () => {
         try {
             const response = await axios.get(`${BASE_URL}/comments/${postId}`, headers)
                 setComments(response.data.reverse())
+                console.log(response.data)
         } catch (error) {
             console.log(error)
         }

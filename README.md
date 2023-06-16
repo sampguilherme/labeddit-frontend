@@ -1,9 +1,37 @@
 # Labeddit-Frontend
 
 ## Sobre
-É uma rede social onde o usuário precisa criar uma conta ou entrar em sua conta já existente para ter acessos aos posts feitos por outros usuários. Ao fazer o login e ter acesso aos posts, o usuário poderá dar likes, dislikes e fazer comentários.
+Labbedit é uma rede social onde o usuário pode criar uma conta ou entrar em uma já existente para ter
+acesso às postagens feitas por outros usuários. Ao realizar o login ou cadastro e ter acesso às
+postagens, será possível interagir dando likes, dislikes ou até mesmo fazendo comentários. Caso o
+usuário faça uma postagem, também será possível editá-la ou até mesmo deletá-la permanentemente.
 
-Para o desenvolvimento do front-end foram utiliados ReactJs, NodeJs, Design System, Styled-components, integração de API e o conceito Mobile First.
+Tecnologias: Axios, ReactJs, Hook Form, React Router Dom, React Icons, Styled Components,
+Chakra UI, TypeScript, Express, SQLite e Node.js.
+
+Outras ferramentas utilizadas: Postman, Render, Vercel e Figma
+
+
+
+## Como rodar o projeto localmente
+
+### Pré-requisito:
+
+* npm
+    ```sh
+    npm install npm@latest -g
+    ```
+
+### Instalação:
+
+1. Clonar o repositório
+    ```sh
+    git clone https://github.com/sampguilherme/labeddit-frontend.git
+    ```
+2. Instalar os pacotes NPM
+    ```sh
+    npm install
+    ```
 
 
 ## Deploy
