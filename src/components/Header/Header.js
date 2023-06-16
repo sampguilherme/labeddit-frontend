@@ -18,7 +18,7 @@ export const Header = (props) => {
             
             <img src={Logo} alt="Logo labeddit"/>
             {
-                props.isOnSignup 
+                props.isOnSignupPage
                 ? <A href="#" onClick={() => goToLoginPage(navigate)}>Entrar</A>
                 : <A href="#" onClick={() => goToLoginPage(navigate)}>Logout</A> 
             }
