@@ -50,8 +50,17 @@ export const LikeDislkeButton = styled.button`
     font-size: 22px;
     color: #6f6f6f;
     opacity: 70%;
-    &:hover{
-        opacity: 50%;
+    
+    .arrowDislike{
+        &:hover{
+            color: red;
+        }
+    }
+    
+    .arrowLike{
+        &:hover{    
+            color: blue;
+        }
     }
 `
 
