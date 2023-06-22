@@ -6,7 +6,6 @@ import {
     LikeAndCommentsDiv,
     LikeAndDislikesDiv,
     LikeDislkeButton,
-    LikeAndCommentsQuantity,
     PrincipalDiv,
     SentUserP,
     TopDiv,
@@ -32,6 +31,7 @@ import {
     IconButton
 } from '@chakra-ui/react'
 import { DeleteModal } from "../DeleteModal/DeleteModal";
+import UINumber from "../UiNumber/UINumber";
 
 export const CardPost = ({post, isOnCommentPage, commentsQuantity}) => {
 
@@ -178,7 +178,7 @@ return (
                             }
                         > {dislikedOrLiked === "ALREADY LIKED" ? <TbArrowBigUpFilled color="blue" /> : <TbArrowBigUp className="arrowLike"/>} </LikeDislkeButton>
 
-                        <LikeAndCommentsQuantity>{likesQuantity}</LikeAndCommentsQuantity>
+                        <UINumber format={likesQuantity > 1000 ? "0.0a" : "0a"}>{likesQuantity}</UINumber>
                         <LikeDislkeButton
                             onClick={
                                 () => LikeOrDislikePost(false)
@@ -190,7 +190,7 @@ return (
                         ? <><TfiComment opacity="70%"/></>
                         : <><CommentButton onClick={() => goToCommentsPage(navigate, id)}> <TfiComment/> </CommentButton></>
                         }
-                        <LikeAndCommentsQuantity>{isOnCommentPage ? commentsQuantity : comments}</LikeAndCommentsQuantity>
+                        <UINumber format="0a">{isOnCommentPage ? commentsQuantity : comments}</UINumber>
                     </CommentsDiv>
                 </LikeAndCommentsDiv>
             </PrincipalDiv>

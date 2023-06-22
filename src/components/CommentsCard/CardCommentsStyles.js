@@ -9,6 +9,9 @@ export const PrincipalDiv = styled.div`
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     margin-bottom: 18px;
+    @media (min-width: 700px){
+        width: 564px;
+    }
 `
 
 export const SentUserP = styled.p`

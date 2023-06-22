@@ -4,15 +4,11 @@ export const PrincipalDiv = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw;
+    width: 100%;
     height: 50px;
     background-color: #ededed;
     position: relative;
-`   
-
-export const LogoHeader = styled.img`
-    
-`
+` 
 
 export const A = styled.a`
     display: flex;
@@ -20,7 +16,7 @@ export const A = styled.a`
     font-weight: 600;
     color: #4088CB;
     position: absolute;
-    right: 10px;
+    right: 16px;
     &:hover {
         text-decoration: underline;
     }
@@ -29,7 +25,7 @@ export const A = styled.a`
 export const ExitButton = styled.button`
     font-family: 'Noto Sans', sans-serif;
     position: absolute;
-    left: 10px;
+    left: 16px;
     font-weight: 600;
     font-size: 22px;
 `

@@ -1,4 +1,4 @@
-import { A, ExitButton, LogoHeader, PrincipalDiv } from "./HeaderStyle"
+import { A, ExitButton, PrincipalDiv } from "./HeaderStyle"
 import Logo from "../../assets/logo-labeddit.svg"
 import { useNavigate } from "react-router-dom"
 import { goToFeedPage, goToLoginPage } from "../../Router/coordinator"
