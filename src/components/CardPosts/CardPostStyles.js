@@ -9,6 +9,10 @@ export const PrincipalDiv = styled.div`
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     margin-bottom: 18px;
+    @media (min-width: 700px){
+        width: 564px;
+    }
+
 `
 
 export const SentUserP = styled.p`
@@ -62,14 +66,6 @@ export const LikeDislkeButton = styled.button`
         }
     }
     
-`
-
-export const LikeAndCommentsQuantity = styled.p`
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    color: #6F6F6F;
-    text-align: center;
 `
 
 export const CommentsDiv = styled.div`

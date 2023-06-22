@@ -14,6 +14,9 @@ export const Textarea = styled.textarea`
     border-radius: 12px;
     background-color: #ededed;
     resize: none;
+    @media (min-width: 700px){
+        width: 564px;
+    }
 `
 
 export const PostButton = styled.button`
@@ -30,6 +33,9 @@ export const PostButton = styled.button`
     &:hover{
         opacity: 90%;
     }
+    @media (min-width: 700px){
+        width: 564px;
+    }
 `
 
 export const Line = styled.div`
@@ -37,4 +43,7 @@ export const Line = styled.div`
     height: 1px;
     background: linear-gradient(90deg, #FF6489 20%, #F9B24E 100%);
     margin-bottom: 28px;
+    @media (min-width: 700px){
+        width: 564px;
+    }
 `
